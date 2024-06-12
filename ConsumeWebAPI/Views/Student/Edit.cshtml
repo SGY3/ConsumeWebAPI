@@ -3,7 +3,13 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
+@{
+    var genderSelectList = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "Male", Text = "Male" },
+        new SelectListItem { Value = "Female", Text = "Female" }
+    };
+}
 <h1>Edit</h1>
 
 <h4>Student</h4>
@@ -24,7 +30,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="StudentGender" class="control-label"></label>
-                <input asp-for="StudentGender" class="form-control" />
+                <select asp-for="StudentGender" class="form-select" asp-items="@(new SelectList(genderSelectList, "Value", "Text"))">
+                    <option value="">Select Gender</option>
+                </select>
+                @* <input asp-for="StudentGender" class="form-control" /> *@
                 <span asp-validation-for="StudentGender" class="text-danger"></span>
             </div>
             <div class="form-group">
